@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>diff</title>
+<meta name="Generator" content="Vim/9.1">
+<meta name="plugin-version" content="vim9.0_v2">
+<meta name="settings" content="whole_filler,use_css,no_foldcolumn,prevent_copy=,use_input_for_pc=none">
+<meta name="colorscheme" content="desert">
+<style>
+<!--
+pre { font-family: monospace; color: #ffffff; background-color: #000000; }
+body { font-family: monospace; color: #ffffff; background-color: #000000; }
+* { font-size: 1em; }
+.Folded { color: #c00000; }
+.Identifier { color: #00ff00; }
+.Statement { color: #00ffff; font-weight: bold; }
+.Comment { color: #ffff00; }
+.Constant { color: #c000c0; }
+.DiffText { color: #000000; background-color: #c0c0c0; padding-bottom: 1px; }
+.DiffAdd { color: #ffffff; background-color: #008000; padding-bottom: 1px; }
+.DiffChange { color: #ffffff; background-color: #ff6060; padding-bottom: 1px; }
+.DiffDelete { color: #ffffff; background-color: #ff40ff; padding-bottom: 1px; }
+-->
+<!--
+table { table-layout: fixed; }
+html, body, table, tbody { width: 100%; margin: 0; padding: 0; }
+table, td, th { border: 1px solid; }
+td { vertical-align: top; }
+th, td { width: 50.0%; }
+td div { overflow: auto; }
+-->
+</style>
+</head>
+<body>
+<table id='vimCodeElement'>
+<tr>
+<th>CE_bus_route.js</th>
+<th>PE_update_shared_string_attribute.js</th>
+</tr><tr>
+<td><div>
+<pre>
+<span class="Folded">+--  7 lines: let $scope;------------------------------------------------------------------------------------------------------------------------------------------------------------------------</span>
+    <span class="Statement">self</span>.ctx.ngZone.run(<span class="Identifier">function</span>() <span class="Identifier">{</span>
+       init();
+       <span class="Statement">self</span>.ctx.detectChanges(<span class="Constant">true</span>);
+    <span class="Identifier">}</span>);
+<span class="Identifier">}</span>;
+
+<span class="DiffDelete">-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</span>
+<span class="Identifier">function</span> init() <span class="Identifier">{</span>
+<span class="DiffDelete">-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</span>
+    $scope = <span class="Statement">self</span>.ctx.$scope;
+    attributeService = $scope.$injector.get(<span class="Statement">self</span>.ctx.servicesMap.get(<span class="Constant">'attributeService'</span>));
+    utils = $scope.$injector.get(<span class="Statement">self</span>.ctx.servicesMap.get(<span class="Constant">'utils'</span>));
+    translate = $scope.$injector.get(<span class="Statement">self</span>.ctx.servicesMap.get(<span class="Constant">'translate'</span>));
+    $scope.toastTargetId = <span class="Constant">'input-widget'</span> + utils.guid();
+    settings = utils.deepClone(<span class="Statement">self</span>.ctx.settings) || <span class="Identifier">{}</span>;
+<span class="Folded">+--  2 lines: settings.showLabel = utils.defaultValue(settings.showLabel, true);-----------------------------------------------------------------------------------------------------------------</span>
+    settings.isRequired = utils.defaultValue(settings.isRequired, <span class="Constant">true</span>);
+    $scope.settings = settings;
+    $scope.isValidParameter = <span class="Constant">true</span>;
+    $scope.dataKeyDetected = <span class="Constant">false</span>;
+    $scope.message = translate.instant(<span class="Constant">'widgets.input-widgets.no-entity-selected'</span>);
+
+<span class="DiffAdd">    console.log</span><span class="DiffAdd">(</span><span class="Statement DiffAdd">self</span><span class="DiffAdd">.ctx.datasources</span><span class="Identifier DiffAdd">[</span><span class="Constant DiffAdd">0</span><span class="Identifier DiffAdd">]</span><span class="DiffAdd">)</span><span class="DiffAdd">                                                                                                                                                         </span>
+<span class="DiffAdd">    </span><span class="DiffAdd">                                                                                                                                                                                             </span>
+    $scope.requiredErrorMessage = utils.customTranslation(settings.requiredErrorMessage, settings.requiredErrorMessage) || translate.instant(<span class="Constant">'widgets.input-widgets.entity-attribute-required'</span>);
+    $scope.labelValue = utils.customTranslation(settings.labelValue, settings.labelValue) || translate.instant(<span class="Constant">'widgets.input-widgets.value'</span>);
+
+    <span class="Identifier">var</span> validators = <span class="Identifier">[</span>$scope.validators.minLength(settings.minLength),
+        $scope.validators.maxLength(settings.maxLength)<span class="Identifier">]</span>;
+
+<span class="Folded">+-- 24 lines: if (settings.isRequired) {---------------------------------------------------------------------------------------------------------------------------------------------------------</span>
+            <span class="Identifier">}</span>
+        <span class="Identifier">}</span>
+        <span class="Statement">if</span> (datasource.dataKeys.length) <span class="Identifier">{</span>
+            <span class="Statement">if</span> (datasource.dataKeys<span class="Identifier">[</span><span class="Constant">0</span><span class="Identifier">]</span>.type !== <span class="Constant">&quot;attribute&quot;</span>) <span class="Identifier">{</span>
+                $scope.isValidParameter = <span class="Constant">false</span>;
+            <span class="Identifier">}</span> <span class="Statement">else</span> <span class="Identifier">{</span>
+<span class="DiffChange">                $scope.currentKey = datasource.dataKeys</span><span class="Identifier DiffChange">[</span><span class="Constant DiffChange">0</span><span class="Identifier DiffChange">]</span><span class="DiffChange">.name;</span><span class="DiffText"> </span><span class="DiffChange">                                                                                                                                </span>
+                $scope.dataKeyType = datasource.dataKeys<span class="Identifier">[</span><span class="Constant">0</span><span class="Identifier">]</span>.type;
+                $scope.dataKeyDetected = <span class="Constant">true</span>;
+            <span class="Identifier">}</span>
+        <span class="Identifier">}</span>
+    <span class="Identifier">}</span>
+
+<span class="Folded">+--  4 lines: self.ctx.widgetTitle = utils.createLabelFromDatasource(self.ctx.datasources[0], $scope.titleTemplate);-----------------------------------------------------------------------------</span>
+        <span class="Statement">if</span> ($scope.entityDetected) <span class="Identifier">{</span>
+            <span class="Identifier">var</span> datasource = <span class="Statement">self</span>.ctx.datasources<span class="Identifier">[</span><span class="Constant">0</span><span class="Identifier">]</span>;
+            <span class="Identifier">var</span> value = $scope.attributeUpdateFormGroup.get(<span class="Constant">'currentValue'</span>).value;
+
+            <span class="Statement">if</span> (!$scope.attributeUpdateFormGroup.get(<span class="Constant">'currentValue'</span>).value.length) <span class="Identifier">{</span>
+                value = <span class="Statement">null</span>;
+<span class="DiffAdd">            </span><span class="Identifier DiffAdd">}</span><span class="DiffAdd"> </span><span class="Statement DiffAdd">else</span><span class="DiffAdd"> </span><span class="Identifier DiffAdd">{</span><span class="DiffAdd">                                                                                                                                                                             </span>
+<span class="DiffAdd">                </span><span class="Statement DiffAdd">try</span><span class="DiffAdd"> </span><span class="Identifier DiffAdd">{</span><span class="DiffAdd">                                                                                                                                                                            </span>
+<span class="DiffAdd">                    value = JSON.parse</span><span class="DiffAdd">(</span><span class="DiffAdd">value</span><span class="DiffAdd">)</span><span class="DiffAdd">; </span><span class="Comment DiffAdd">// Parse the value as JSON</span><span class="DiffAdd">                                                                                                                        </span>
+<span class="DiffAdd">                </span><span class="Identifier DiffAdd">}</span><span class="DiffAdd"> </span><span class="Statement DiffAdd">catch</span><span class="DiffAdd"> </span><span class="DiffAdd">(</span><span class="DiffAdd">e</span><span class="DiffAdd">)</span><span class="DiffAdd"> </span><span class="Identifier DiffAdd">{</span><span class="DiffAdd">                                                                                                                                                                    </span>
+<span class="DiffAdd">                    $scope.showErrorToast</span><span class="DiffAdd">(</span><span class="DiffAdd">translate.instant</span><span class="DiffAdd">(</span><span class="Constant DiffAdd">'widgets.input-widgets.invalid-json'</span><span class="DiffAdd">)</span><span class="DiffAdd">, </span><span class="Constant DiffAdd">'bottom'</span><span class="DiffAdd">, </span><span class="Constant DiffAdd">'left'</span><span class="DiffAdd">, $scope.toastTargetId</span><span class="DiffAdd">)</span><span class="DiffAdd">;                                                      </span>
+<span class="DiffAdd">                    </span><span class="Statement DiffAdd">return</span><span class="DiffAdd">;                                                                                                                                                                      </span>
+<span class="DiffAdd">                </span><span class="Identifier DiffAdd">}</span><span class="DiffAdd">                                                                                                                                                                                </span>
+            <span class="Identifier">}</span>
+<span class="DiffText">            </span><span class="DiffChange">                                                                                                                                                                                     </span>
+<span class="DiffChange">            </span><span class="Identifier DiffText">let</span><span class="DiffText"> entityType = datasource.entityFilter.entityType</span><span class="DiffChange">                                                                                                                                  </span>
+<span class="DiffChange">            </span><span class="DiffChange">                                                                                                                                                                                     </span>
+<span class="DiffAdd">            datasource.entityFilter.entityList.forEach</span><span class="DiffAdd">((</span><span class="DiffAdd">entityId</span><span class="DiffAdd">)</span><span class="DiffAdd"> =&gt; </span><span class="Identifier DiffAdd">{</span><span class="DiffAdd">                                                                                                                           </span>
+<span class="DiffAdd">                attributeService.saveEntityAttributes</span><span class="DiffAdd">(</span><span class="DiffAdd">                                                                                                                                           </span>
+<span class="DiffAdd">                </span><span class="Identifier DiffAdd">{</span><span class="DiffAdd">entityType: entityType, id: entityId</span><span class="Identifier DiffAdd">}</span><span class="DiffAdd">,                                                                                                                                          </span>
+                <span class="Constant">'SHARED_SCOPE'</span>,
+                <span class="Identifier">[</span>
+                    <span class="Identifier">{</span>
+<span class="DiffChange">                        key: $scope.currentKey,</span><span class="DiffText"> </span><span class="Comment DiffText">// Use the dynamic key here</span><span class="DiffChange">                                                                                                                      </span>
+                        value
+                    <span class="Identifier">}</span>
+                <span class="Identifier">]</span>
+            ).subscribe(
+                <span class="Identifier">function</span> success() <span class="Identifier">{</span>
+                    $scope.originalValue = $scope.attributeUpdateFormGroup.get(<span class="Constant">'currentValue'</span>).value;
+<span class="Folded">+--  3 lines: if (settings.showResultMessage) {--------------------------------------------------------------------------------------------------------------------------------------------------</span>
+                <span class="Identifier">}</span>,
+                <span class="Identifier">function</span> fail() <span class="Identifier">{</span>
+                    <span class="Statement">if</span> (settings.showResultMessage) <span class="Identifier">{</span>
+                        $scope.showErrorToast(translate.instant(<span class="Constant">'widgets.input-widgets.update-failed'</span>), <span class="Constant">'bottom'</span>, <span class="Constant">'left'</span>, $scope.toastTargetId);
+                    <span class="Identifier">}</span>
+                <span class="Identifier">}</span>
+<span class="DiffChange">            </span><span class="DiffText">    </span><span class="DiffChange">)</span><span class="DiffChange">;                                                                                                                                                                               </span>
+<span class="DiffAdd">            </span><span class="Identifier DiffAdd">}</span><span class="DiffAdd">)</span><span class="DiffAdd">;                                                                                                                                                                                  </span>
+        <span class="Identifier">}</span>
+    <span class="Identifier">}</span>;
+
+    $scope.changeFocus = <span class="Identifier">function</span> () <span class="Identifier">{</span>
+        <span class="Statement">if</span> ($scope.attributeUpdateFormGroup.get(<span class="Constant">'currentValue'</span>).value === $scope.originalValue) <span class="Identifier">{</span>
+            $scope.isFocused = <span class="Constant">false</span>;
+<span class="Folded">+-- 33 lines: }----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</span>
+</pre>
+</div></td>
+<td><div>
+<pre>
+<span class="Folded">+--  7 lines: let $scope;------------------------------------------------------------------------------------------------------------------------------------------------------------------------</span>
+    <span class="Statement">self</span>.ctx.ngZone.run(<span class="Identifier">function</span>() <span class="Identifier">{</span>
+       init();
+       <span class="Statement">self</span>.ctx.detectChanges(<span class="Constant">true</span>);
+    <span class="Identifier">}</span>);
+<span class="Identifier">}</span>;
+
+<span class="DiffAdd"> </span><span class="DiffAdd">                                                                                                                                                                                                </span>
+<span class="Identifier">function</span> init() <span class="Identifier">{</span>
+<span class="DiffAdd"> </span><span class="DiffAdd">                                                                                                                                                                                                </span>
+    $scope = <span class="Statement">self</span>.ctx.$scope;
+    attributeService = $scope.$injector.get(<span class="Statement">self</span>.ctx.servicesMap.get(<span class="Constant">'attributeService'</span>));
+    utils = $scope.$injector.get(<span class="Statement">self</span>.ctx.servicesMap.get(<span class="Constant">'utils'</span>));
+    translate = $scope.$injector.get(<span class="Statement">self</span>.ctx.servicesMap.get(<span class="Constant">'translate'</span>));
+    $scope.toastTargetId = <span class="Constant">'input-widget'</span> + utils.guid();
+    settings = utils.deepClone(<span class="Statement">self</span>.ctx.settings) || <span class="Identifier">{}</span>;
+<span class="Folded">+--  2 lines: settings.showLabel = utils.defaultValue(settings.showLabel, true);-----------------------------------------------------------------------------------------------------------------</span>
+    settings.isRequired = utils.defaultValue(settings.isRequired, <span class="Constant">true</span>);
+    $scope.settings = settings;
+    $scope.isValidParameter = <span class="Constant">true</span>;
+    $scope.dataKeyDetected = <span class="Constant">false</span>;
+    $scope.message = translate.instant(<span class="Constant">'widgets.input-widgets.no-entity-selected'</span>);
+
+<span class="DiffDelete">-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</span>
+<span class="DiffDelete">-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</span>
+    $scope.requiredErrorMessage = utils.customTranslation(settings.requiredErrorMessage, settings.requiredErrorMessage) || translate.instant(<span class="Constant">'widgets.input-widgets.entity-attribute-required'</span>);
+    $scope.labelValue = utils.customTranslation(settings.labelValue, settings.labelValue) || translate.instant(<span class="Constant">'widgets.input-widgets.value'</span>);
+
+    <span class="Identifier">var</span> validators = <span class="Identifier">[</span>$scope.validators.minLength(settings.minLength),
+        $scope.validators.maxLength(settings.maxLength)<span class="Identifier">]</span>;
+
+<span class="Folded">+-- 24 lines: if (settings.isRequired) {---------------------------------------------------------------------------------------------------------------------------------------------------------</span>
+            <span class="Identifier">}</span>
+        <span class="Identifier">}</span>
+        <span class="Statement">if</span> (datasource.dataKeys.length) <span class="Identifier">{</span>
+            <span class="Statement">if</span> (datasource.dataKeys<span class="Identifier">[</span><span class="Constant">0</span><span class="Identifier">]</span>.type !== <span class="Constant">&quot;attribute&quot;</span>) <span class="Identifier">{</span>
+                $scope.isValidParameter = <span class="Constant">false</span>;
+            <span class="Identifier">}</span> <span class="Statement">else</span> <span class="Identifier">{</span>
+<span class="DiffChange">                $scope.currentKey = datasource.dataKeys</span><span class="Identifier DiffChange">[</span><span class="Constant DiffChange">0</span><span class="Identifier DiffChange">]</span><span class="DiffChange">.name;                                                                                                                                 </span>
+                $scope.dataKeyType = datasource.dataKeys<span class="Identifier">[</span><span class="Constant">0</span><span class="Identifier">]</span>.type;
+                $scope.dataKeyDetected = <span class="Constant">true</span>;
+            <span class="Identifier">}</span>
+        <span class="Identifier">}</span>
+    <span class="Identifier">}</span>
+
+<span class="Folded">+--  4 lines: self.ctx.widgetTitle = utils.createLabelFromDatasource(self.ctx.datasources[0], $scope.titleTemplate);-----------------------------------------------------------------------------</span>
+        <span class="Statement">if</span> ($scope.entityDetected) <span class="Identifier">{</span>
+            <span class="Identifier">var</span> datasource = <span class="Statement">self</span>.ctx.datasources<span class="Identifier">[</span><span class="Constant">0</span><span class="Identifier">]</span>;
+            <span class="Identifier">var</span> value = $scope.attributeUpdateFormGroup.get(<span class="Constant">'currentValue'</span>).value;
+
+            <span class="Statement">if</span> (!$scope.attributeUpdateFormGroup.get(<span class="Constant">'currentValue'</span>).value.length) <span class="Identifier">{</span>
+                value = <span class="Statement">null</span>;
+<span class="DiffDelete">-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</span>
+<span class="DiffDelete">-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</span>
+<span class="DiffDelete">-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</span>
+<span class="DiffDelete">-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</span>
+<span class="DiffDelete">-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</span>
+<span class="DiffDelete">-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</span>
+<span class="DiffDelete">-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</span>
+            <span class="Identifier">}</span>
+<span class="DiffChange"> </span><span class="DiffChange">                                                                                                                                                                                                </span>
+<span class="DiffChange">            </span><span class="DiffText">attributeService.saveEntityAttributes</span><span class="DiffText">(</span><span class="DiffChange">                                                                                                                                               </span>
+<span class="DiffChange">            </span><span class="DiffText">    datasource.entity.id,</span><span class="DiffChange">                                                                                                                                                            </span>
+<span class="DiffDelete">-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</span>
+<span class="DiffDelete">-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</span>
+<span class="DiffDelete">-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</span>
+                <span class="Constant">'SHARED_SCOPE'</span>,
+                <span class="Identifier">[</span>
+                    <span class="Identifier">{</span>
+<span class="DiffChange">                        key: $scope.currentKey,</span><span class="DiffChange">                                                                                                                                                  </span>
+                        value
+                    <span class="Identifier">}</span>
+                <span class="Identifier">]</span>
+            ).subscribe(
+                <span class="Identifier">function</span> success() <span class="Identifier">{</span>
+                    $scope.originalValue = $scope.attributeUpdateFormGroup.get(<span class="Constant">'currentValue'</span>).value;
+<span class="Folded">+--  3 lines: if (settings.showResultMessage) {--------------------------------------------------------------------------------------------------------------------------------------------------</span>
+                <span class="Identifier">}</span>,
+                <span class="Identifier">function</span> fail() <span class="Identifier">{</span>
+                    <span class="Statement">if</span> (settings.showResultMessage) <span class="Identifier">{</span>
+                        $scope.showErrorToast(translate.instant(<span class="Constant">'widgets.input-widgets.update-failed'</span>), <span class="Constant">'bottom'</span>, <span class="Constant">'left'</span>, $scope.toastTargetId);
+                    <span class="Identifier">}</span>
+                <span class="Identifier">}</span>
+<span class="DiffChange">            </span><span class="DiffChange">)</span><span class="DiffChange">;                                                                                                                                                                                   </span>
+<span class="DiffDelete">-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</span>
+        <span class="Identifier">}</span>
+    <span class="Identifier">}</span>;
+
+    $scope.changeFocus = <span class="Identifier">function</span> () <span class="Identifier">{</span>
+        <span class="Statement">if</span> ($scope.attributeUpdateFormGroup.get(<span class="Constant">'currentValue'</span>).value === $scope.originalValue) <span class="Identifier">{</span>
+            $scope.isFocused = <span class="Constant">false</span>;
+<span class="Folded">+-- 33 lines: }----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</span>
+</pre>
+</div></td>
+</tr>
+</table>
+</body>
+</html>
+<!-- vim: set foldmethod=manual : -->
+
